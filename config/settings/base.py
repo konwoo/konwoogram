@@ -53,6 +53,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # APPS
 # ------------------------------------------------------------------------------
 DJANGO_APPS = [
+    # DEFAULT
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -63,6 +64,7 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
+    #FROM INTERNET
     'crispy_forms',
     'allauth',
     'allauth.account',
@@ -70,8 +72,10 @@ THIRD_PARTY_APPS = [
     'rest_framework',
 ]
 LOCAL_APPS = [
+    # create app
     'konwoogram.users.apps.UsersAppConfig',
     # Your stuff: custom apps go here
+    'konwoogram.images.apps.ImagesConfig',
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
