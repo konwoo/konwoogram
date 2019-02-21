@@ -19,6 +19,10 @@ urlpatterns = [
         "users/",
         include("konwoogram.users.urls", namespace="users"),
     ),
+    path(
+        "images/",
+        include("konwoogram.images.urls", namespace="images"),
+    ),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(

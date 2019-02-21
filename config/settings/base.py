@@ -69,7 +69,7 @@ THIRD_PARTY_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'rest_framework',
+    'rest_framework', # REST Framework
 ]
 LOCAL_APPS = [
     # create app
