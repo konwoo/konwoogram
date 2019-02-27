@@ -4,7 +4,7 @@ from konwoogram.images import serializers as images_serializsers
 
 class UserProfileSerializer(serializers.ModelSerializer):
 
-    images = images_serializsers.UserProfileSerializer(many=True)
+    images = images_serializsers.CountImageSerializer(many=True)
 
     class Meta:
         model = models.User

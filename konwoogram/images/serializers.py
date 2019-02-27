@@ -3,7 +3,7 @@ from . import models
 from konwoogram.users import models as user_models
 
 
-class UserProfileSerializer(serializers.ModelSerializer):
+class CountImageSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = models.Image
@@ -54,5 +54,6 @@ class ImageSerializer(serializers.ModelSerializer):
             'comments',
             'like_count',
             'creator',
+            'tags',
         ]
 

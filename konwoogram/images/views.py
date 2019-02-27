@@ -112,3 +112,23 @@ class Comment(APIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except models.Comment.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+
+class Search(APIView):
+
+    def get(self, request, format=None):
+
+        hashTags = request.query_params.get('hashTags', None)
+        
+        if hashTags is not None:
+
+            hashTags = hashTags.split(",")
+
+            images = models.Image.objects.filter(tags__name__in=hashTags).distinct()
+
+            serializer = serializers.CountImageSerializer(images, many=True)
+
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+        
+        else: 
+
+            return Response(status=status.HTTP_400_BAD_REQUEST)
