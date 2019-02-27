@@ -1,6 +1,5 @@
 from django.db import models
 from taggit.managers import TaggableManager
-#from taggit_serializer.serializers import (TagListSerializerField,TaggitSerializer)
 from konwoogram.users import models as user_models
 
 

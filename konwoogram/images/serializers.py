@@ -1,7 +1,18 @@
 from rest_framework import serializers
 from . import models
+from taggit_serializer.serializers import (TagListSerializerField,TaggitSerializer)
 from konwoogram.users import models as user_models
 
+
+class SmallImageSerializer(serializers.ModelSerializer):
+
+    """ Used for the notifications"""
+
+    class Meta:
+        model = models.Image
+        fields = (
+            'file',
+        )
 
 class CountImageSerializer(serializers.ModelSerializer):
     
@@ -43,7 +54,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
     comments = CommentSerializer(many=True)
     creator = FeedUserSerializer()
-
+    tags = TagListSerializerField()
     class Meta:
         model = models.Image
         fields = [
