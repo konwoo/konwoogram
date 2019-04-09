@@ -4,11 +4,14 @@ from konwoogram.images import serializers as images_serializsers
 
 class UserProfileSerializer(serializers.ModelSerializer):
 
-    images = images_serializsers.CountImageSerializer(many=True)
-
+    images = images_serializsers.CountImageSerializer(many=True, read_only=True)
+    post_count = serializers.ReadOnlyField()
+    followers_count = serializers.ReadOnlyField()
+    following_count = serializers.ReadOnlyField()
     class Meta:
         model = models.User
         fields = (
+            'profile_image',
             'username',
             'name',
             'bio',
