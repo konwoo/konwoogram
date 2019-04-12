@@ -423,14 +423,15 @@ module.exports = function(webpackEnv) {
               use: getStyleLoaders(
                 {
                   importLoaders: 2,
+                  modules: true,
+                  camelCase: true,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
-                },
+                }
               ).concat({
                 loader: require.resolve("sass-loader"),
                 options: {
                   includePaths: [paths.appSrc + '/config'],
                   data: `@import '_variables';`,
-                  // data: `@import "/Users/konwoo/Documents/konwoogram/frontend/src/config/_variables";`,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                 }
               }),
@@ -447,20 +448,17 @@ module.exports = function(webpackEnv) {
               use: getStyleLoaders(
                 {
                   importLoaders: 2,
-                  sourceMap: isEnvProduction && shouldUseSourceMap,
                   modules: true,
-                  getLocalIdent: getCSSModuleLocalIdent,
                   camelCase: true,
-                },
-                {
-                  loader: require.resolve("sass-loader"),
-                  options: {
-                    // data: `@import "/Users/konwoo/Documents/konwoogram/frontend/src/config/_variables";`,
-                    data: `@import '${paths.appSrc}/config/_variables';`,
-                    sourceMap: isEnvProduction && shouldUseSourceMap,
-                  }
+                  getLocalIdent: getCSSModuleLocalIdent,
                 }
-              ),
+              ).concat({
+                loader: require.resolve("sass-loader"),
+                options: {
+                  includePaths: [paths.appSrc + '/config'],
+                  data: `@import '_variables';`,
+                }
+              }),
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
