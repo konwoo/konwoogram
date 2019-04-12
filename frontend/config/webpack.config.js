@@ -78,7 +78,13 @@ module.exports = function(webpackEnv) {
       },
       {
         loader: require.resolve('css-loader'),
-        options: cssOptions,
+        // options: cssOptions,
+        options: {
+          importLoaders: 1,
+          modules: true,
+          localIdentName: "[path][name]__[local]--[hash:base64:5]",
+          camelCase: "dashes"
+        }
       },
       {
         // Options for PostCSS as we reference these options twice
@@ -419,14 +425,15 @@ module.exports = function(webpackEnv) {
                   importLoaders: 2,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                 },
-                {
-                  loader: require.resolve("sass-loader"),
-                  options: {
-                    data: `@import "${paths.appSrc}/config/_variables/scss";`,
-                    sourceMap: shouldUseSourceMap
-                  }
+              ).concat({
+                loader: require.resolve("sass-loader"),
+                options: {
+                  includePaths: [paths.appSrc + '/config'],
+                  data: `@import '_variables';`,
+                  // data: `@import "/Users/konwoo/Documents/konwoogram/frontend/src/config/_variables";`,
+                  sourceMap: isEnvProduction && shouldUseSourceMap,
                 }
-              ),
+              }),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
               // Remove this when webpack adds a warning or an error for this.
@@ -448,8 +455,9 @@ module.exports = function(webpackEnv) {
                 {
                   loader: require.resolve("sass-loader"),
                   options: {
-                    data: `@import "${paths.appSrc}/config/_variables/scss";`,
-                    sourceMap: shouldUseSourceMap
+                    // data: `@import "/Users/konwoo/Documents/konwoogram/frontend/src/config/_variables";`,
+                    data: `@import '${paths.appSrc}/config/_variables';`,
+                    sourceMap: isEnvProduction && shouldUseSourceMap,
                   }
                 }
               ),
