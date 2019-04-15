@@ -5,11 +5,9 @@ import { ConnectedRouter } from 'connected-react-router';
 import store, { history } from 'redux/configureStore';
 import App from 'components/App';
 import I18n from 'redux-i18n';
-import {translations} from "translations";
+import { translations } from "translations";
 
 store.dispatch({ type: "WHAT"})
-
-console.log(store.getState())
 
 ReactDOM.render(
     <Provider store={store}>
@@ -18,7 +16,6 @@ ReactDOM.render(
                 <App />
             </I18n>
         </ConnectedRouter>
-    </Provider>
-    , 
+    </Provider>, 
     document.getElementById('root')
 );

@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "./style.module.scss"
+// import PropTypes from "prop-types";
+import styles from "./style.scss"
 
 const Footer = (props, context) => (
     <footer className={styles.footer}>

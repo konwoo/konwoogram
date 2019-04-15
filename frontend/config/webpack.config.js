@@ -35,7 +35,7 @@ const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
 // style files regexes
-const cssRegex = /\.(css|scss)$/;
+const cssRegex = /\.(css)$/;
 const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
@@ -78,13 +78,13 @@ module.exports = function(webpackEnv) {
       },
       {
         loader: require.resolve('css-loader'),
-        // options: cssOptions,
-        options: {
-          importLoaders: 1,
-          modules: true,
-          localIdentName: "[path][name]__[local]--[hash:base64:5]",
-          camelCase: "dashes"
-        }
+        options: cssOptions,
+        // options: {
+        //   importLoaders: 1,
+        //   modules: true,
+        //   localIdentName: "[path][name]__[local]--[hash:base64:5]",
+        //   camelCase: "dashes"
+        // }
       },
       {
         // Options for PostCSS as we reference these options twice
@@ -394,6 +394,8 @@ module.exports = function(webpackEnv) {
               exclude: cssModuleRegex,
               use: getStyleLoaders({
                 importLoaders: 1,
+                modules: true,
+                camelCase: true,
                 sourceMap: isEnvProduction && shouldUseSourceMap,
               }),
               // Don't consider CSS imports dead code even if the
@@ -425,21 +427,18 @@ module.exports = function(webpackEnv) {
                   importLoaders: 2,
                   modules: true,
                   camelCase: true,
-                  sourceMap: isEnvProduction && shouldUseSourceMap,
+                },
+                {
+                  loader: require.resolve("sass-loader"),
+                  options: {
+                    data: `@import '${paths.appSrc}/configs/_variables.scss';`,
+                  }
                 }
-              ).concat({
-                loader: require.resolve("sass-loader"),
-                options: {
-                  includePaths: [paths.appSrc + '/config'],
-                  data: `@import '_variables';`,
-                  sourceMap: isEnvProduction && shouldUseSourceMap,
-                }
-              }),
+              ),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
               // Remove this when webpack adds a warning or an error for this.
               // See https://github.com/webpack/webpack/issues/6571
-              sideEffects: true,
             },
             // Adds support for CSS Modules, but using SASS
             // using the extension .module.scss or .module.sass
@@ -451,14 +450,14 @@ module.exports = function(webpackEnv) {
                   modules: true,
                   camelCase: true,
                   getLocalIdent: getCSSModuleLocalIdent,
+                },
+                {
+                  loader: require.resolve("sass-loader"),
+                  options: {
+                    data: `@import '${paths.appSrc}/configs/_variables.scss';`,
+                  }
                 }
-              ).concat({
-                loader: require.resolve("sass-loader"),
-                options: {
-                  includePaths: [paths.appSrc + '/config'],
-                  data: `@import '_variables';`,
-                }
-              }),
+              ),
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
