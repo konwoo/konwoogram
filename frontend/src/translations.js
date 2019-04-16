@@ -1,8 +1,36 @@
 export const translations = {
-    es: {
-        "Log in": "Iniciar"
-    },
-    kr: {
-        "Log in": "로그인"
-    }
+  'es': {
+    'Checkout our App. Is Cool': 'Ya tiens una cuenta?',
+    'Logo': '',
+    'Don\'t have account?': '',
+    'Sign UP': '',
+    'Have an account?': '',
+    'Log in': '',
+    'Get the app': '',
+    'Download it on Apple Appstore': '',
+    'Download it on Android Appstore': '',
+    'Username': 'nombre de usuario',
+    'Password': 'contraseña',
+    'Log in with Facebook': '',
+    'Forgot password?': '',
+    'Sign up to see photos and videos from your friends': '',
+    'or': '',
+    'Email': '',
+    'Full Name': '',
+    'Sign up': '',
+    'By signing up, you agree to our': '',
+    'Terms & Privacy Policy': '',
+    'About Us': '',
+    'Support': '',
+    'Blog': '',
+    'Press': '',
+    'API': '',
+    'Jobs': '',
+    'Privacy': '',
+    'Terms': '',
+    'Directory': '',
+    'Language': '',
+  },
+  'options': {
+  },
 }
