@@ -192,4 +192,4 @@ class ChangePassword(APIView):
 
 
 class FacebookLogin(SocialLoginView):
-    adapter_class = FacebookOAuth2Adapter
+        adapter_class = FacebookOAuth2Adapter

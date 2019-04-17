@@ -8,6 +8,12 @@ class UsersAppConfig(AppConfig):
 
     def ready(self):
         try:
-            import users.signals  # noqa F401
+            """Override this to put in:
+            Users system checks
+            Users signal registration
+            """
+            from .signals import user_signed_up
+            # import users.signals  # noqa F401
+
         except ImportError:
             pass
