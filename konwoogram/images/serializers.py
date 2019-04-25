@@ -76,7 +76,7 @@ class ImageSerializer(TaggitSerializer, serializers.ModelSerializer):
         if 'request' in self.context:
             request = self.context['request']
             try:
-                models.Like.object.get(creator__id=request.user_id, image__id=obj.id)
+                models.Like.objects.get(creator__id=request.user.id, image__id=obj.id)
                 return True
             except models.Like.DoesNotExist:
                 return False
