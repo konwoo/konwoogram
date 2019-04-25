@@ -3,8 +3,10 @@
     @include boxBorder(no);
     justify-content: center;
     display: flex;
+    margin-bottom: 60px;
+    box-sizing: border-box;
     .inner {
-        max-width: $max-page-width;
+        max-width: $max-page-width + 80px;
         display: flex;
         justify-content: space-between;
         align-items: center;

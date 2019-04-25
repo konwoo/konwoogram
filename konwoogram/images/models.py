@@ -1,7 +1,7 @@
 from django.db import models
 from taggit.managers import TaggableManager
 from konwoogram.users import models as user_models
-
+from django.contrib.humanize.templatetags.humanize import naturaltime
 
 class TimeStampModel(models.Model):
 
@@ -28,6 +28,10 @@ class Image(TimeStampModel):
     @property
     def comment_count(self):
         return self.comments.all().count()
+
+    @property
+    def natural_time(self):
+        return naturaltime(self.created_at)
 
     def __str__(self):
         return '{} - {}'.format(self.location, self.caption)
