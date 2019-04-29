@@ -9,6 +9,7 @@ const LIKE_PHOTO = "LIKE_PHOTO"
 const UNLIKE_PHOTO = "UNLIKE_PHOTO"
 const ADD_COMMENT = "ADD_COMMENT"
 
+
 // action creators
 
 function setFeed(feed) {
@@ -201,13 +202,15 @@ function applyAddPhoto(state, action) {
     });
     return { ...state, feed: updateFeed };
 }
+
+
 // export
 
 const actionCreators = {
     getFeed,
     likePhoto,
     unLikePhoto,
-    commentPhoto
+    commentPhoto,
 }
 
 export { actionCreators };
